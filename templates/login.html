@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3DLab-Sistema Produção</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2980b9; /* Azul */
+            color: #fff; /* Branco */
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .login-box {
+            background-color: #fff; /* Branco */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            animation: slide-up 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes slide-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            color: #2c3e50; /* Preto */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #3498db; /* Azul */
+            color: #fff; /* Branco */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9; /* Azul mais escuro */
+        }
+
+        .icon {
+            margin-bottom: 20px;
+        }
+
+        .link {
+            margin-top: 20px;
+            color: #fff; /* Branco */
+            text-decoration: none;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvc2CN25L9KfZJ2ahhUPEh8-DCxMt5qV2aIKuhX9x6FGl_OE2VQae44MKqqXhYocflVSo&usqp=CAU" alt="Ícone de Login" class="icon">
+            <h2>Sistema Produção</h2>
+            <form action="autenticar_login" method="post">
+                <input type="text" name="username" placeholder="Username">
+                <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>

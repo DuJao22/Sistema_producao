@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de Quantidade</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #00796b;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #004d40;
+        }
+        .form-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input[type="text"], .form-container input[type="number"], .form-container input[type="submit"] {
+            width: 98%;
+            padding: 10px;
+            border: 1px solid #00796b;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .form-container input[type="submit"] {
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #004d40;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #004d40;
+        }
+        th {
+            background-color: #00796b;
+            color: #ffffff;
+        }
+        tr:nth-child(even) {
+            background-color: #e0f2f1;
+        }
+        tr:hover {
+            background-color: #b2dfdb;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Edição de Quantidade</h1>
+    <hr>
+    <a href="/gestor"><button>Voltar</button></a>
+    
+    <hr>
+    <div class="form-container">
+        <form action="/edit_quantity" method="POST">
+            <label for="maquina">Máquina:</label>
+            <input type="text" id="maquina" name="maquina" required>
+            <label for="requisicao">Requisição:</label>
+            <input type="text" id="requisicao" name="requisicao" required>
+            <label for="quantidade">Nova Quantidade:</label>
+            <input type="number" id="quantidade" name="quantidade" step="any" required>
+            <input type="submit" value="Atualizar Quantidade">
+        </form>
+        
+        
+    </div>
+    
+    <div class="form-container">
+        <h2>Requisições Atuais</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Máquina</th>
+                    <th>Requisição</th>
+                    <th>Tipo Material</th>
+                    <th>Cor</th>
+                    <th>Porcentagem</th>
+                    <th>Carretel</th>
+                    <th>Quantidade</th>
+                    <th>Quantidade Solicitada</th>
+                    <th>Velocidade</th>
+                    <th>Diâmetro</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for maquina, requisicoes in requisicoes.items() %}
+                    {% for requisicao_id, dados in requisicoes.items() %}
+                    <tr>
+                        <td>{{ maquina }}</td>
+                        <td>{{ requisicao_id }}</td>
+                        <td>{{ dados.tipo_material }}</td>
+                        <td>{{ dados.cor }}</td>
+                        <td>{{ dados.porcentagem }}</td>
+                        <td>{{ dados.carretel }}</td>
+                        <td>{{ dados.quantidade }}</td>
+                        <td>{{ dados.quantidade_solicitada }}</td>
+                        <td>{{ dados.velocidade }}</td>
+                        <td>{{ dados.diametro }}</td>
+                        <td>{{ dados.data }}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Central</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Altura total da tela */
+            background-color: #f9f9f9; /* Cor de fundo da página */
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px; /* Espaçamento entre os cards */
+        }
+
+        .card {
+            background-color: #ffffff; /* Cor de fundo padrão do card */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Centralizar o texto */
+            width: 200px; /* Largura fixa dos cards */
+        }
+
+        .card img {
+            width: 100px; /* Largura do logotipo */
+            height: auto; /* Manter a proporção do logotipo */
+            margin-bottom: 10px; /* Espaçamento abaixo do logotipo */
+        }
+
+        
+
+        .card.cliever button {
+            background-color: #4caf50; /* Verde padrão para os botões da seção Cliever */
+            color: white; /* Cor do texto branco */
+        }
+
+        
+        button {
+            background-color: #2D19F1; /* Cor de fundo azul padrão */
+            color: white; /* Cor do texto branco */
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%; /* Largura total do botão */
+        }
+
+        button:hover {
+            background-color: #1a0ab1; /* Azul mais escuro ao passar o mouse */
+        }
+
+        footer {
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <div class="card">
+                <img src="https://reev.co/wp-content/uploads/2021/04/3d-lab.png" alt="Logo 3D Lab"> <!-- Substitua pelo caminho do logotipo do 3D Lab -->
+                <h3>3D Lab</h3>
+                <a href="gerar_sku_3d"><button>Cadastar</button></a>
+                <p></p>
+                <a href="ver_cadastrados"><button>Já Cadastrado</button></a>
+            </div>
+
+            <div class="card cliever">
+                <img src="https://images.tcdn.com.br/files/1276403/themes/7/img/settings/Loginho1217.jpg?b330a14e21c8dc084c8e5886e721a880" alt="Logo Cliever"> <!-- Substitua pelo caminho do logotipo do Cliever -->
+                <h3>Cliever</h3>
+                <a href="/gerar_sku_cliever"><button>Cadastrar</button></a>
+                <p></p>
+                <a href="ver_cadastrados_cliever"><button>Já Cadastrado</button></a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <a href="/gestor"><button>Voltar</button></a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Máquina 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1px;
+            width: 100%;
+        }
+
+        .main-card {
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1500px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            height: 100%;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .inner-card {
+            background-color: #d6d4d4;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #configuracao {
+            background-color: #f87171;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #proxima-producao {
+            background-color: #19a4ad;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #andamento {
+            background-color: #0aa01e;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #pendente {
+            background-color: #ebd03a;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card2 {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .card-esquerdo, .card-central, .card-direito {
+            flex: 1;
+            min-width: 0; /* Permitir que os elementos se ajustem */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: left;
+            background-color: #ffffff;
+        }
+
+        th {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .text-card {
+            background-color: #ffffff; /* Branco */
+            border: 1px solid #007BFF; /* Azul */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 93%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Novos estilos para a seção de configuração */
+        .config-table {
+            margin-bottom: 20px; /* Espaço entre as tabelas */
+        }
+
+        .config-table h3 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .config-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .config-table th, .config-table td {
+            border: 1px solid #000000;
+            padding: 8px;
+            text-align: left;
+            background-color: #ffffff;
+        }
+
+        .config-table th {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        @media (max-width: 1000px) {
+            .main-card {
+                grid-template-columns: 1fr;
+            }
+
+            .column {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            header, footer {
+                padding: 1px 0;
+            }
+
+            .inner-card-container, .inner-card {
+                padding: 5px;
+            }
+        }
+
+        .text-card {
+            border: 1px solid #007BFF; /* Azul */
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+            width: 93%;
+            margin-top: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografia mais moderna */
+        }
+
+        .text-card-header {
+            background-color: #000; /* Fundo preto */
+            color: #fff; /* Texto branco */
+            padding: 15px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            font-family: Arial, Helvetica,;/* Fonte banca */
+            text-align: center;
+        }
+
+        .text-card-body {
+            background: #f1d96d; /* Fundo suave */
+            padding: 20px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            color: #000000; /* Texto em cinza */
+            font-size: 16px;
+            line-height: 1.6; /* Espaçamento entre linhas */
+            text-align: center;
+            font-family: Arial, Helvetica,;
+        }
+
+    </style>
+
+<script>
+    // Função para recarregar a página a cada 5 minutos (300000 milissegundos)
+    function autoRefresh() {
+        setTimeout(function() {
+            location.reload();
+        }, 6000); // 300000 ms = 5 minutos
+    }
+
+    // Chama a função de recarregamento automático quando a página carrega
+    window.onload = autoRefresh;
+</script>
+</head>
+<body>
+    
+    
+    
+    <main>
+        <div class="main-card">
+            
+            <div class="card inner-card-container">
+                <div class="inner-card" id="andamento">
+                    <h2>PRODUÇÃO EM ANDAMENTO {{ empresa }} -- MAQUINA 4</h2>
+                    {% if primeiro_item %}
+                        <div class="card">
+                            {% for sku, detalhes in primeiro_item.items() %}
+                                <h3>SKU: {{ sku }} - {{ detalhes.tipo_material }} {{ detalhes.cor }} - {{ detalhes.diametro }} MM</h3>
+                                <div class="card2">
+                                    <div class="card-esquerdo">
+                                        <h4>CARRETEL: {{ detalhes.carretel }}</h4>
+                                    </div>
+                                    <div class="card-central">
+                                        <h4>QNTD SOLICITADA: {{ detalhes.quantidade_solicitada }} UND</h4>
+                                    </div>
+                                    <div class="card-direito">
+                                        <h4>PRODUZIDO: {{ ja_produzido }}</h4>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="inner-card" id="pendente">
+                    <h2>PENDENTE {{empresa}} </h2>
+                    <div class="card">
+                        
+                        <div class="card2">
+                            {% if pendente %}
+                            <div class="card-central">
+                                <h4> QNTD A SER PRODUZIDA: {{ pendente.quantidade }} UND</h4>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="inner-card" id="configuracao">
+                    
+                    {% if primeiro_item %}
+                        {% for sku, detalhes in primeiro_item.items() %}
+                            <h3>CONFIGURAÇÃO --  {{ sku }} - {{ detalhes.tipo_material }} {{ detalhes.cor }} {{ detalhes.diametro }} MM</h3>
+                            <h3> PORCENTAGEM - {{ detalhes.porcentagem }}% - Velocidade {{ detalhes.velocidade }}</h3>                        
+                        {% endfor %}
+                    {% endif %}
+                    <!-- Tabela para Heater 1 -->
+                    <div class="config-table">
+                        <h3>Heater 1</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Zona 1</th>
+                                    <th>Zona 2</th>
+                                    <th>Zona 3</th>
+                                    <th>Cabecote 1</th>
+                                    <th>Cabecote 2</th>
+                                    <th>Cabecote 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if config_preset %}
+                                
+                                <tr>
+                                    <td>{{ config_preset.heater1.zona1 }}</td>
+                                    <td>{{ config_preset.heater1.zona2 }}</td>
+                                    <td>{{ config_preset.heater1.zona3 }}</td>
+                                    <td>{{ config_preset.heater1.cabecote1 }}</td>
+                                    <td>{{ config_preset.heater1.cabecote2 }}</td>
+                                    <td>{{ config_preset.heater1.cabecote3 }}</td>
+                                </tr>
+                                
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tabela para Heater 2 -->
+                    <div class="config-table">
+                        <h3>Heater 2</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Zona 1</th>
+                                    <th>Zona 2</th>
+                                    <th>Zona 3</th>
+                                    <th>Cabecote 1</th>
+                                    <th>Bico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if config_preset %}
+                                
+                                <tr>
+                                    <td>{{ config_preset.heater2.zona1 }}</td>
+                                    <td>{{ config_preset.heater2.zona2 }}</td>
+                                    <td>{{ config_preset.heater2.zona3 }}</td>
+                                    <td>{{ config_preset.heater2.cabecote1 }}</td>
+                                    <td>{{ config_preset.heater2.bico }}</td>
+                                    
+                                </tr>
+                                
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                
+                    <!-- Tabela para Heater 3 -->
+                    <div class="config-table">
+                        <h3>Heater 3</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Zona 1</th>
+                                    <th>Zona 2</th>
+                                    <th>Zona 3</th>
+                                    <th>Cabecote 1</th>
+                                    <th>Cabecote 2</th>
+                                    <th>Cabecote 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if config_preset %}
+                                
+                                <tr>
+                                    <td>{{ config_preset.heater3.zona1 }}</td>
+                                    <td>{{ config_preset.heater3.zona2 }}</td>
+                                    <td>{{ config_preset.heater3.zona3 }}</td>
+                                    <td>{{ config_preset.heater3.cabecote1 }}</td>
+                                    <td>{{ config_preset.heater3.cabecote2 }}</td>
+                                    <td>{{ config_preset.heater3.cabecote3 }}</td>
+                                </tr>
+                                
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="inner-card" id="proxima-producao">
+                    <h2>PRÓXIMA PRODUÇÃO</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Material</th>
+                                <th>Porcentagem</th>
+                                <th>Carretel</th>
+                                <th>Quantidade</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if Requisicao %}
+                                {% set requisicao_lista = Requisicao.items()|list %}
+                                {% for x in requisicao_lista %}
+                                    <tr>
+                                        <td>{{ x[0] }}</td>
+                                        <td>{{ x[1].tipo_material }} {{ x[1].cor }} - {{ x[1].diametro }}</td>
+                                        <td>{{ x[1].porcentagem }} %</td>
+                                        <td>{{ x[1].carretel }}</td>
+                                        <td>{{ x[1].quantidade }} UND</td>
+                                        <td>{{ x[1].data if x[1].data else 'N/A' }}</td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">Nenhuma requisição encontrada.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+
+            <div class="card">
+            
+                <div class="text-card-header">
+                    <h2>OBSERVAÇÃO</h2>
+                </div>
+                <div class="text-card-body">
+                    <h5>{{texto}}</h5>
+                    <hr>
+                </div>
+                
+                
+            </div>
+
+            
+        </div>
+    </main>
+    
+    <footer>
+        © 2024 Quadro de Produção - João Layon
+    </footer>
+    
+</body>
+</html>

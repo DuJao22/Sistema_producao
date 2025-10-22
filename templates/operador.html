@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Lab-Produção</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Para esconder a barra de rolagem horizontal */
+            position: relative; /* Para o posicionamento absoluto do menu */
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #2D19F1; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        #user-info1 {
+            text-align: center;
+
+        }#user-info2 {
+            text-align: center;
+        }
+
+        #user-info p {
+            margin: 5px 0;
+        }
+
+        #content {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para as colunas */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .column {
+            float: left;
+            width: 33.33%; /* Alterado para 33.33% para 3 colunas em uma linha */
+            padding: 10px;
+            box-sizing: border-box; /* Incluir preenchimento na largura */
+        }
+
+        /* Estilos para o card de Metas */
+        .meta-card {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .meta-info {
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para a barra de menu */
+        .menu-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #2D19F1; /* Cor de fundo azul */
+            text-align: center;
+            padding: 10px 0;
+            z-index: 1; /* Para garantir que a barra de menu fique acima do conteúdo */
+        }
+
+        .menu-ball {
+            width: 50px;
+            height: 50px;
+            background-color: #ffffff; /* Cor de fundo branca */
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-ball:hover {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro quando hover */
+        }
+
+        .menu-icon {
+            color: #2D19F1; /* Cor do ícone de menu azul */
+            font-size: 24px;
+            line-height: 50px; /* Centralizar verticalmente o ícone */
+        }
+
+        /* Estilos para as opções do menu */
+        .menu-options {
+            display: none;
+            position: absolute;
+            bottom: 65px; /* Posição abaixo da barra de menu */
+            width: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2; /* Para garantir que o menu fique acima da barra de menu */
+            text-align: center;
+        }
+
+        .menu-option {
+            display: block;
+            width: 100%;
+            background-color: #ffffff; /* Cor de fundo branca */
+            border-radius: 10px; /* Bordas arredondadas */
+            margin: 5px 0;
+            text-decoration: none;
+            color: #000000; /* Cor do texto preto */
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .menu-option:hover {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro quando hover */
+        }
+
+        .show-menu {
+            display: block !important; /* Forçar a exibição do menu */
+        }
+
+        /* Estilos para os ícones */
+        .fa {
+            margin-right: 10px;
+        }
+
+        .green {
+            background-color: #28a745; /* Cor verde */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        .red {
+            background-color: #dc3545; /* Cor vermelha */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        .yellow {
+            background-color: #0b07ff; /* Cor amarela */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        /* Estilos para a div da meta */
+        .meta-div {
+            border: 2px solid #000000; /* Borda preta */
+            border-radius: 10px; /* Bordas arredondadas */
+            padding: 5px;
+            margin-top: 10px;
+            text-align: left;
+
+        }
+
+        .fechamento-btn {
+            background-color: #2D19F1; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+            border: none; /* Remove borda padrão */
+            border-radius: 10px; /* Bordas arredondadas */
+            padding: 10px 20px; /* Espaçamento interno */
+            cursor: pointer; /* Muda o cursor ao passar o mouse */
+            font-size: 16px; /* Tamanho da fonte */
+            transition: background-color 0.3s; /* Transição suave para hover */
+        }
+
+        .fechamento-btn:hover {
+            background-color: #1a0ab1; /* Cor mais escura ao passar o mouse */
+        }
+
+        /* Estilos para o card de Alerta de Qualidade */
+        /* Estilos para a tabela de qualidade */
+        .table-quality {
+            width: 100%;
+            border-collapse: collapse; /* Colapso das bordas da tabela */
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-quality th, .table-quality td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #c25f5f; /* Linha de separação entre as linhas */
+        }
+
+        .table-quality th {
+            background-color: #c02b2b; /* Cor de fundo cinza claro para cabeçalho */
+            color: #000000; /* Cor do texto preto para cabeçalho */
+        }
+
+        .table-quality tbody tr:nth-child(even) {
+            background-color: #f8f8f8; /* Cor de fundo cinza mais claro para linhas pares */
+        }
+
+        .table-quality tbody tr:hover {
+            background-color: #7c5353; /* Cor de fundo cinza claro quando hover */
+        }
+
+        .alert-card {
+            background-color: #ffffff; /* Cor de fundo vermelha mais clara */
+            border-left: 5px solid #721c24; /* Borda esquerda vermelha mais escura */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert-card-notificacao {
+            background-color: #ffffff; /* Cor de fundo vermelha mais clara */
+            border-left: 5px solid #90972c; /* Borda esquerda vermelha mais escura */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #th2 {
+            background-color: #dcdf27; /* Cor de fundo cinza claro para cabeçalho */
+            color: #000000;
+        }
+
+        #logout {
+            color:white
+        }
+
+    </style>
+    <!-- Adicionando o link para os ícones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div id="header">
+        <a href="/login" class="home-button" id="logout"><button>Logout</button></a> <!-- Botão com link para a página inicial -->
+
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMpbqqC-mLmcPLKoEC6cXd908DuDhWFy_k4LfhtCh-YXXbEoApk_BSEukEbcaVSxPSQcE&usqp=CAU" alt="Logo" width="50" height="50"> <!-- Substitua 'logo.png' pelo caminho da sua logo -->
+            
+        </div>
+        
+        <div id="user-info1">
+            <p> Nome : {{ info_user.nome }}</p>
+            <p> Data Hoje : {{ data2 }}</p>
+        </div>
+        <div id="user-info2"> 
+            <p>Turno : {{ info_user.turno }}</p>
+            <p>Maquina : {{ info_user.maquina }}</p>
+        </div>
+    </div>
+    <!-- Tabela -->
+    
+    {% if qualidade %}
+    <div class="card alert-card">
+        <h2>Alertas de RNC interna</h2>
+        <!-- Tabela de informações sobre a qualidade -->
+        <table class="table-quality">
+            <thead>
+                <tr>
+                    <th>Lote</th>
+                    <th>Data</th>
+                    <th>RNC Interna Gerada</th>
+                    <th>Motivo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chave, dados in qualidade.items() %}
+                <tr>
+                    <td>{{ dados[2] }}</td>
+                    <td>{{ dados[0] }}</td>
+                    <td>{{ dados[3] }}</td>
+                    <td>{{ dados[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+
+    {% if notificacao %}
+    <div class="card alert-card-notificacao">
+        <h2>Notificação de Ocorrência</h2>
+        <!-- Tabela de informações sobre a qualidade -->
+        <table class="table-quality">
+            <thead>
+                <tr>
+                    <th id="th2">Lote</th>
+                    <th id="th2">Data</th>
+                    <th id="th2">Ocorrência</th>
+                    <th id="th2">Correção</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chave, dados in notificacao.items() %}
+                
+                <tr>
+                    <td>{{ dados[2] }}</td>
+                    <td>{{ dados[0] }}</td>
+                    <td>{{ dados[3] }}</td>
+                    <td>{{ dados[4] }}</td>
+                </tr>
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+
+
+    
+        
+        
+        
+        
+
+        <div class="card meta-card">
+            <center><h2>Metas</h2></center>
+            <p>Referente ao mês {{mes}} </p>
+            <div class="row">
+                <div class="column green meta-div">
+                    <div class="meta-info">
+                        <h3>Meta Produção Mensal {{meta}} KG</h3>
+                        <p>Quantidade Produzida: {{produzida}}</p>
+                        <p>Falta Para Meta: {{fmeta}}</p>
+                    </div>
+                </div>
+                <div class="column red meta-div">
+                    <div class="meta-info">
+                        <h3>Meta Perda Mensal 4%</h3>
+                        <p>Quantidade Perdida: {{perda}}</p>
+                        <p>Porcentagem da Perda: {{pperda}} %</p>
+                    </div>
+                </div>
+                <div class="column yellow meta-div">
+                    <div class="meta-info">
+                        <h3>Meta Low Cost Mensal 3%  </h3>
+                        <p>Quantidade Low Cost: {{lowc}}
+                        </p>
+                        <p>Porcentagem Low Cost: {{plowc}} %</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <center>
+        <div class="opcoes-operador">
+            <hr>
+            <a href="/fechamento">
+                <button class="fechamento-btn">Fechamento</button>
+            </a>
+            <hr>
+            
+            <a href={{info_user.Link_qualidade}}>
+                <button class="fechamento-btn">Inspensão de Qualidade</button>
+            </a>
+            <hr>
+            <a href="/feedback-inicio">
+                <button class="fechamento-btn">FeedBack</button>
+            </a>
+            <hr>
+
+        </div>
+        
+    </center>
+ 
+</body>
+</html>

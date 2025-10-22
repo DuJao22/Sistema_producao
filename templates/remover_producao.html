@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Produção</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .form-container p {
+            text-align: center;
+            margin-top: 15px;
+            color: #777;
+        }
+        .message {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .production-info {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Formulário de Remoção -->
+        <div class="form-container">
+            <h2>Remover Produção</h2>
+            <form action="{{ url_for('remover_producao') }}" method="POST">
+                <label for="sku">SKU:</label>
+                <input type="text" id="sku" name="sku" placeholder="Digite o SKU" required>
+
+                <label for="lote">Lote:</label>
+                <input type="text" id="lote" name="lote" placeholder="Digite o Lote" required>
+
+                <label for="data">Data (DD-MM-YYYY):</label>
+                <input type="text" id="data" name="data" placeholder="Digite a Data" required>
+
+                <button type="submit">Remover Produção</button>
+            </form>
+            <p>Preencha os campos acima e clique em "Remover Produção".</p>
+        </div>
+
+        <!-- Mensagem de Confirmação e Informações da Produção Removida -->
+        {% if producao_removida %}
+        <div class="form-container">
+            <h2>Produção Removida</h2>
+            <div class="message">A produção foi removida com sucesso!</div>
+            <div class="production-info">
+                <strong>Informações da Produção Removida:</strong><br>
+                SKU: {{ producao_removida.sku }}<br>
+                Lote: {{ producao_removida.lote }}<br>
+                Materia Prima: {{ producao_removida.materia_prima }}<br>
+                Material: {{ producao_removida.material }}<br>
+                Cor: {{ producao_removida.cor }}<br>
+                Diâmetro: {{ producao_removida.diametro }}<br>
+                Produzida: {{ producao_removida.produzida }}<br>
+                Data: {{ producao_removida.data }}<br>
+            </div>
+
+            <h3>Produções Restantes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Lote</th>
+                        <th>Material</th>
+                        <th>Cor</th>
+                        <th>Produzida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producao in producoes %}
+                    <tr>
+                        <td>{{ producao.sku }}</td>
+                        <td>{{ producao.lote }}</td>
+                        <td>{{ producao.material }}</td>
+                        <td>{{ producao.cor }}</td>
+                        <td>{{ producao.produzida }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

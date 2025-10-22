@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #e0f7fa;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1 1 30%;
+            max-width: 300px;
+        }
+
+        .card h3 {
+            color: #007bff;
+        }
+
+        .card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Solicitar Produção</h1>
+    </header>
+    <main>
+        <div class="card-container">
+            <div class="card">
+                <h3>Maquina 1</h3>
+                <a href="/maquina1"><button>Botão 1</button></a>
+            </div>
+            <div class="card">
+                <h3>Maquina 2</h3>
+                <a href="/maquina2"><button>Botão 2</button></a>
+            </div>
+            <div class="card">
+                <h3>Maquina 3</h3>
+                <a href="/maquina3"><button>Botão 3</button></a>
+            </div>
+            <div class="card">
+                <h3>Maquina 4</h3>
+                <a href="/maquina4"><button>Botão 4</button></a>
+            </div>
+
+            
+        </div>
+        
+    </main>
+    <a href="/gestor"><button>Voltar</button></a>
+    <footer>
+        © 2024 João Layon
+    </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Preset - Cliever</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e8f5e9; /* Verde claro */
+        }
+
+        .card {
+            background-color: #ffffff; /* Branco */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #388e3c; /* Verde */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .checkbox-group {
+            display: flex; /* Exibe os checkboxes lado a lado */
+            gap: 10px; /* Espaçamento entre os checkboxes */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #388e3c; /* Verde */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2c6b2f; /* Verde mais escuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Cadastro de Preset - Cliever</h2>
+        <a href="/maquina4_preset_cliever"><button>Maquina 4</button></a>
+        <form action="/cadastrar_cliever" method="POST" onsubmit="showSuccessMessage()">
+            <div class="form-group">
+                <h2>SKU: {{id}}</h2>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="maquina" value="MAQUINA 1"> Maquina 1</label>
+                <label><input type="checkbox" name="maquina" value="MAQUINA 2"> Maquina 2</label>
+                <label><input type="checkbox" name="maquina" value="MAQUINA 3"> Maquina 3</label>
+            </div>
+            <div class="form-group">
+                <label for="zona1">ZONA 1:</label>
+                <input type="text" id="zona1" name="zona1">
+            </div>
+            <div class="form-group">
+                <label for="zona2">ZONA 2:</label>
+                <input type="text" id="zona2" name="zona2">
+            </div>
+            <div class="form-group">
+                <label for="zona3">ZONA 3:</label>
+                <input type="text" id="zona3" name="zona3">
+            </div>
+            <div class="form-group">
+                <label for="zona4">ZONA 4:</label>
+                <input type="text" id="zona4" name="zona4">
+            </div>
+            <div class="form-group">
+                <label for="cabecote">CABEÇOTE:</label>
+                <input type="text" id="cabecote" name="cabecote">
+            </div>
+            <div class="form-group">
+                <label for="bico">BICO:</label>
+                <input type="text" id="bico" name="bico">
+            </div>
+            <div class="form-group">
+                <label for="calha1">CALHA 1:</label>
+                <input type="text" id="calha1" name="calha1">
+            </div>
+            <div class="form-group">
+                <label for="calha2">CALHA 2:</label>
+                <input type="text" id="calha2" name="calha2">
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    <script>
+        function showSuccessMessage() {
+            alert("Registro feito com sucesso! - SKU");
+        }
+    </script>
+</body>
+</html>

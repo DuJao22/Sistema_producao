@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presets Cliever MAQUINA 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9; /* Verde claro */
+            margin: 0;
+            padding-bottom: 50px; /* Espaço para a barra fixa no fundo */
+        }
+
+        .card {
+            background-color: #ffffff; /* Branco */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #388e3c; /* Verde escuro */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #c8e6c9; /* Verde muito claro */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #388e3c; /* Verde escuro */
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .back-button {
+            background-color: #ffffff;
+            color: #388e3c; /* Verde escuro */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #e8f5e9; /* Verde claro */
+        }
+
+        .highlight-machine4 {
+            background-color: #dcedc8; /* Verde muito claro */
+        }
+
+        .zone-table, .heater-table {
+            margin-bottom: 40px;
+        }
+
+        .search-form {
+            margin-bottom: 20px;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .search-form input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #388e3c; /* Verde escuro */
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .search-form input[type="submit"]:hover {
+            background-color: #2c6b2f; /* Verde mais escuro */
+        }
+
+        .sku-section {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #e8f5e9; /* Verde claro */
+        }
+
+        .sku-section h3 {
+            margin-top: 0;
+            color: #388e3c; /* Verde escuro */
+        }
+
+        .info-table {
+            background-color: #dcedc8; /* Verde muito claro */
+            border-radius: 5px;
+        }
+
+        .info-table th {
+            background-color: #c8e6c9; /* Verde claro para cabeçalhos */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Presets Cliever MAQUINA 4</h2>
+
+        <!-- Formulário de busca -->
+        <div class="search-form">
+            <form action="/cadastrados_maquina4_cliever" method="GET">
+                <input type="text" id="search_sku" name="search_sku" placeholder="Buscar por SKU">
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+
+        <!-- Seções separadas por SKU -->
+        {% for sku, values in filtered_presets.items() %}
+            <div class="sku-section">
+                <h3>SKU: {{ sku }}</h3>
+                <h4>Configurações Gerais</h4>
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>MATERIAL</th>
+                            <th>COR</th>
+                            <th>DIÂMETRO</th>
+                            <th>PESO</th>
+                            <th>CONFIGURAÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ Sku[sku][0] }}</td>
+                            <td>{{ Sku[sku][1] }}</td>
+                            <td>{{ Sku[sku][2] }}</td>
+                            <td>{{ Sku[sku][3] }}</td>
+                            <td>{{ Sku[sku][4] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Heaters</h4>
+                {% for heater, details in values.items() %}
+                    <h5>{{ heater }}</h5>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zona</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for zona, valor in details.items() %}
+                                {% if 'cabecote' not in zona and 'bico' not in zona %}
+                                    <tr>
+                                        <td>{{ zona }}</td>
+                                        <td>{{ valor }}°C</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Componentes</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for componente, valor in details.items() %}
+                                {% if 'cabecote' in componente or 'bico' in componente %}
+                                    <tr>
+                                        <td>{{ componente }}</td>
+                                        <td>{{ valor }}°C</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <a href="/opcoes_cadastros_sku" class="back-button">Voltar</a>
+    </div>
+</body>
+</html>

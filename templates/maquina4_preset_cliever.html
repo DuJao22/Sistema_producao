@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Preset - Cliever</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9; /* Verde claro */
+            color: #388e3c; /* Verde escuro */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1000px;
+            background-color: #ffffff; /* Branco */
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+        }
+        .section {
+            display: inline-block;
+            vertical-align: top;
+            width: 30%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .section input[type="text"] {
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            width: calc(100% - 18px); /* Ajuste para a borda */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #388e3c; /* Verde escuro */
+            color: #ffffff; /* Texto branco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #2c6b2f; /* Verde mais escuro ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Preset - Cliever</h1>
+        <h5>{{maquina}} - SKU {{ sku }}</h5>
+        <form action="/cadastrar_preset_maquina4_cliever" method="post">
+            <div class="section">
+                <h4>Heater 1</h4>
+                <input type="text" name="heater1_zona1" placeholder="Zona 1">
+                <input type="text" name="heater1_zona2" placeholder="Zona 2">
+                <input type="text" name="heater1_zona3" placeholder="Zona 3">
+                <input type="text" name="heater1_cabecote1" placeholder="Cabeçote 1">
+                <input type="text" name="heater1_cabecote2" placeholder="Cabeçote 2">
+                <input type="text" name="heater1_cabecote3" placeholder="Cabeçote 3">
+            </div>
+            <div class="section">
+                <h4>Heater 2</h4>
+                <input type="text" name="heater2_zona1" placeholder="Zona 1">
+                <input type="text" name="heater2_zona2" placeholder="Zona 2">
+                <input type="text" name="heater2_zona3" placeholder="Zona 3">
+                <input type="text" name="heater2_cabecote" placeholder="Cabeçote">
+                <input type="text" name="heater2_bico" placeholder="Bico">
+            </div>
+            <div class="section">
+                <h4>Heater 3</h4>
+                <input type="text" name="heater3_zona1" placeholder="Zona 1">
+                <input type="text" name="heater3_zona2" placeholder="Zona 2">
+                <input type="text" name="heater3_zona3" placeholder="Zona 3">
+                <input type="text" name="heater3_cabecote1" placeholder="Cabeçote 1">
+                <input type="text" name="heater3_cabecote2" placeholder="Cabeçote 2">
+                <input type="text" name="heater3_cabecote3" placeholder="Cabeçote 3">
+            </div>
+            <br>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div>
+</body>
+</html>

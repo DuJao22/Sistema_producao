@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de SKUs Cadastrados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding-bottom: 50px; /* Para dar espaço à barra fixa no fundo */
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #2D19F1;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .back-button {
+            background-color: #ffffff;
+            color: #2D19F1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #f2f2f2;
+        }
+        #sku{
+            color:#2D19F1
+        }
+        #maquina {
+            color:red
+        }
+
+        #btn {
+            background-color: #007BFF; /* Azul padrão */
+            color: #ffffff; /* Texto branco */
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #btn:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+
+        #btn:active {
+            background-color: #003d7a; /* Azul ainda mais escuro */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #btn:focus {
+            outline: none; /* Remove o contorno padrão do foco */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Contorno azul claro */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <form action="/ver_cadastrados" method="GET">
+            <label for="machine_select">Selecionar Máquina:</label>
+            <select id="machine_select" name="machine_select">
+                <option value="">Todas as Máquinas</option>
+                <option value="MAQUINA 1">Maquina 1</option>
+                <option value="MAQUINA 2">Maquina 2</option>
+                <option value="MAQUINA 3">Maquina 3</option>
+                <option value="MAQUINA 4">Maquina 4</option>
+                <!-- Adicionar mais opções conforme necessário -->
+            </select>
+            <input type="submit" value="Filtrar">
+        </form>
+        <p><hr></p>
+        <form action="/ver_cadastrados_por_sku" method="GET">
+            <label for="input_sku">Buscar por SKU:</label>
+            <input type="text" id="input_sku" name="input_sku" placeholder="Digite o SKU">
+            <input type="submit" value="Buscar">
+        </form>
+        <hr>
+        <a href="/cadastrados_maquina4"><button id="btn">Maquina 4</button></a>
+        <hr>
+        <h2>SKU's Cadastrados - 3D Lab</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>MÁQUINA</th>
+                    <th>MATERIAL</th>
+                    <th>COR</th>
+                    <th>DIÂMETRO</th>
+                    <th>PESO</th>
+                    <th>CONFIGURAÇÃO</th>
+                    <th>ZONA 1</th>
+                    <th>ZONA 2</th>
+                    <th>ZONA 3</th>
+                    <th>ZONA 4</th>
+                    <th>CABEÇOTE</th>
+                    <th>BICO</th>
+                    <th>CALHA 1</th>
+                    <th>CALHA 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for maquina, skus in presets.items() %}
+                    {% for sku, values in skus.items() %}
+                        <tr>
+                            <td id="sku">{{ sku }}</td>
+                            <td id="maquina">{{ maquina }}</td>
+                            <td>{{ Sku[sku][0] }}</td>
+                            <td>{{ Sku[sku][1] }}</td>
+                            <td>{{ Sku[sku][2] }}</td>
+                            <td>{{ Sku[sku][3] }}</td>
+                            <td>{{ Sku[sku][4] }}</td>
+                            <td>{{ values[0] }}°C</td>
+                            <td>{{ values[1] }}°C</td>
+                            <td>{{ values[2] }}°C</td>
+                            <td>{{ values[3] }}°C</td>
+                            <td>{{ values[4] }}°C</td>
+                            <td>{{ values[5] }}°C</td>
+                            <td>{{ values[6] }}°C</td>
+                            <td>{{ values[7] }}°C</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <a href="/opcoes_cadastros_sku" class="back-button">Voltar</a>
+    </div>
+</body>
+</html>

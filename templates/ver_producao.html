@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Produção</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: #ffffff;
+        }
+        #content {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .filter-form {
+            margin-bottom: 20px;
+        }
+        .filter-form label {
+            margin-right: 10px;
+        }
+        .filter-form input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>Relatório de Produção</h1>
+        <a href="/gestor" class="back-button">Voltar</a>
+    </div>
+
+    <div id="content">
+        <form class="filter-form" method="post" action="/ver-producao">
+            <label for="operador">Operador:</label>
+            <select name="operador" id="operador">
+                <option value="">Todos</option>
+                {% for op in operadores %}
+                    <option value="{{ op }}">{{ op }}</option>
+                {% endfor %}
+            </select>
+            
+            <label for="sku">SKU:</label> <!-- Novo campo para filtro por SKU -->
+            <input type="text" name="sku" id="sku" placeholder="Digite o SKU">
+
+            <label for="start_date">Data Inicial:</label>
+            <input type="date" name="start_date" id="start_date">
+
+            <label for="end_date">Data Final:</label>
+            <input type="date" name="end_date" id="end_date">
+
+            <button type="submit">Filtrar</button>
+        </form>
+
+        <hr>
+        <a href="/download"><button>Download</button></a>
+        <hr>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>SKU</th>
+                    <th>Material</th>
+                    <th>Cor</th>
+                    <th>Diâmetro</th>
+                    <th>Produzida (UN)</th>
+                    <th>Produzida 500g (UN)</th>
+                    <th>Produzida 200g (UN)</th>
+                    <th>Perda (kg)</th>
+                    <th>Low Cost</th>
+                    <th>ID</th>
+                    <th>Lote</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in producao %}
+                    <tr>
+                        <td>{{ item['data'] }}</td>
+                        <td>{{ item['sku'] }}</td>
+                        <td>{{ item['material'] }}</td>
+                        <td>{{ item['cor'] }}</td>
+                        <td>{{ item['diametro'] }}</td>
+                        <td>{{ item['produzida'] }}</td>
+                        <td>{{ item['produzida500g'] }}</td>
+                        <td>{{ item['produzida200g'] }}</td>
+                        <td>{{ item['perda'] }}</td>
+                        <td>{{ item['low'] }}</td>
+                        <td>{{ item['ID'] }}</td>
+                        <td>{{ item['lote'] }}</td>
+                        <td>{{ item['observacao'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

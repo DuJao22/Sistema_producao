@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Observação</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Azul claro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background-color: #ffffff; /* Branco */
+            border: 1px solid #007BFF; /* Azul */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .card input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .card .checkboxes {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .card .checkboxes label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .card button {
+            background-color: #007BFF; /* Azul */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .card button:hover {
+            background-color: #0056b3; /* Azul escuro */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Adicionar Observação</h2>
+        <form action="/enviar_observacao" method="post">
+            <input type="text" name="observacao" placeholder="Escreva sua observação aqui...">
+            <div class="checkboxes">
+                <label><input type="checkbox" name="maquinas" value="maquina1"> Máquina 1</label>
+                <label><input type="checkbox" name="maquinas" value="maquina2"> Máquina 2</label>
+                <label><input type="checkbox" name="maquinas" value="maquina3"> Máquina 3</label>
+                <label><input type="checkbox" name="maquinas" value="maquina4"> Máquina 4</label>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+        <p></p>
+        <a href="/gestor"> <button>Voltar</button> </a>
+    </div>
+</body>
+</html>

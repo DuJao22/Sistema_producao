@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Novos SKUs Cliever</title>
+    <style>
+        body {
+            background-color: #e8f5e9; /* Verde claro */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Para que o rodapé fique no final da página */
+        }
+        header {
+            background-color: #388e3c; /* Verde */
+            color: #fff;
+            padding: 5px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* Para que o formulário ocupe o espaço disponível */
+        }
+        .card {
+            background-color: #ffffff; /* Branco */
+            padding: 20px; /* Aumentei o padding para melhor visualização */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Largura do formulário */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #388e3c; /* Verde */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        button:hover {
+            background-color: #2c6b2f; /* Verde mais escuro */
+        }
+        footer {
+            background-color: #388e3c; /* Verde */
+            color: #fff;
+            text-align: center;
+            padding: 3px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        footer button {
+            background-color: #388e3c; /* Verde */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer button:hover {
+            background-color: #2c6b2f; /* Verde mais escuro */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cadastro de Novos SKUs Cliever</h1>
+    </header>
+    <div class="container">
+        <div class="card">
+            <form action="/gravar_sku_cliever" method="post">
+                <input type="text" id="sku" name="sku" placeholder="SKU" required pattern=".{6}" title="O SKU deve ter exatamente 6 caracteres">
+                <input type="text" id="material" name="material" placeholder="Material" required>
+                <input type="text" id="cor" name="cor" placeholder="Cor" required>
+                <input type="text" id="porcentagem" name="porcentagem" placeholder="Porcentagem" required>
+                <input type="text" id="diametro" name="diametro" placeholder="Diâmetro" required>
+                <input type="text" id="peso" name="peso" placeholder="Peso" required>
+                <input type="text" id="bico" name="bico" placeholder="Bico" required>
+                <input type="text" id="base" name="base" placeholder="Base" required>
+                <hr>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <button onclick="window.history.back()">Voltar</button>
+    </footer>
+</body>
+</html>

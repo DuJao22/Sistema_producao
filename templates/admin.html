@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Administrativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .titulo {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .main-content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e2e2e2;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        button {
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        /* Estilos Responsivos */
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px;
+            }
+
+            .logo img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .titulo {
+                font-size: 20px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo img {
+                width: 25px;
+                height: 25px;
+            }
+
+            .titulo {
+                font-size: 18px;
+            }
+
+            .card {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            table td, table th {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="https://yt3.googleusercontent.com/auMc8KMwYHovKVYGII17nzAWnPwgQrk-j9bNGZU1p_dhX2MUUZ1QuG9-K9A8PqfP5Qu6n5QdyQ=s900-c-k-c0x00ffffff-no-rj" alt="Sua Logo">
+    </div>
+    <div class="titulo">Página Administrativa</div>
+</div>
+
+<div class="main-content">
+    <div class="card">
+        <hr>
+        <div style="text-align: center;">
+            <a href="/gestor">
+                <button>Voltar</button>
+            </a>
+        </div>
+        <hr>
+        <h3>Adicionar Novo Usuário</h3>
+        <form action="/adicionar_user" id="addUserForm" method="POST">
+            ID: <input type="text" name="id" required><br>
+            Senha: <input type="text" name="senha" required><br>
+            Nome : <input type="text" name="nome" required><br>
+            Máquina : <input type="text" name="maquina"><br>
+            Turno : <input type="text" name="turno"><br>
+            Gestor : <input type="checkbox" name="gestor"><br>
+            Qualidade : <input type="checkbox" name="qualidade"><br>
+            Operador : <input type="checkbox" name="operador"><br>
+            Link Qualidade: <input type="text" name="link_qualidade"><br>
+            <button type="submit">Adicionar Usuário</button>
+        </form>
+    </div>
+
+    <h3>Usuários</h3>
+    <table id="usuariosTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Máquina</th>
+                <th>Turno</th>
+                <th>Operador</th>
+                <th>Gestor</th>
+                <th>Qualidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for id, dados in usuarios.items() %}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ dados.nome }}</td>
+                <td>{{ dados.maquina if dados.maquina else '-' }}</td>
+                <td>{{ dados.turno if dados.turno else '-' }}</td>
+                <td>{{ 'Sim' if dados.operador else 'Não' }}</td>
+                <td>{{ 'Sim' if dados.gestor else 'Não' }}</td>
+                <td>{{ 'Sim' if dados.qualidade else 'Não' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="main-content">
+    <!-- Dentro da div .main-content -->
+    {% for imagem in nomes_imagens %}
+        <img src="{{ imagem }}" alt="Produção Mensal" style="max-width: 100%; height: auto; display: block; margin: 10px 0;">
+    {% endfor %}
+</div>
+
+<div class="footer">
+    &copy; 2024 Página Administrativa - João Layon
+</div>
+
+</body>
+</html>

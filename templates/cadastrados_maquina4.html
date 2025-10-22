@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presets 3D Lab MAQUINA 4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding-bottom: 50px; /* Para dar espaço à barra fixa no fundo */
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px; /* Tamanho da fonte menor para tabelas */
+        }
+
+        th, td {
+            padding: 8px; /* Menor espaçamento interno */
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #2D19F1;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .back-button {
+            background-color: #ffffff;
+            color: #2D19F1;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #f2f2f2;
+        }
+
+        .highlight-machine4 {
+            background-color: #ffeb3b; /* Cor amarela clara para MAQUINA 4 */
+        }
+
+        .zone-table, .heater-table {
+            margin-bottom: 40px;
+        }
+
+        .search-form {
+            margin-bottom: 20px;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .search-form input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .search-form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .sku-section {
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .sku-section h3 {
+            margin-top: 0;
+        }
+
+        /* Estilo para tabela de informações gerais com destaque amarelo */
+        .info-table {
+            background-color: #fff9c4; /* Detalhe amarelo claro para a tabela */
+            border-radius: 5px;
+        }
+
+        .info-table th {
+            background-color: #fff59d; /* Amarelo mais forte para o cabeçalho da tabela */
+        }
+
+        /* Adicionando estilo para as tabelas de heaters */
+        .heater-table {
+            background-color: #e8f5e9; /* Cor verde clara para tabelas de heaters */
+            border-radius: 5px;
+        }
+
+        .heater-table th {
+            background-color: #c8e6c9; /* Verde mais forte para o cabeçalho da tabela */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Presets 3D Lab MAQUINA 4</h2>
+
+        <!-- Formulário de busca -->
+        <div class="search-form">
+            <form action="/cadastrados_maquina4" method="GET">
+                <input type="text" id="search_sku" name="search_sku" placeholder="Buscar por SKU">
+                <input type="submit" value="Buscar">
+            </form>
+        </div>
+
+        <!-- Seções separadas por SKU -->
+        {% for sku, values in filtered_presets.items() %}
+            <div class="sku-section">
+                <h3>SKU: {{ sku }}</h3>
+                <h4>Configurações Gerais</h4>
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>MATERIAL</th>
+                            <th>COR</th>
+                            <th>DIÂMETRO</th>
+                            <th>PESO</th>
+                            <th>CONFIGURAÇÃO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ Sku[sku][0] }}</td>
+                            <td>{{ Sku[sku][1] }}</td>
+                            <td>{{ Sku[sku][2] }}</td>
+                            <td>{{ Sku[sku][3] }}</td>
+                            <td>{{ Sku[sku][4] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Heaters</h4>
+                {% for heater, details in values.items() %}
+                    <h5>{{ heater }}</h5>
+                    <table class="heater-table">
+                        <thead>
+                            <tr>
+                                <th>Zona/Componente</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for zona, valor in details.items() %}
+                                <tr>
+                                    <td>{{ zona }}</td>
+                                    <td>{{ valor }}°C</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <a href="/opcoes_cadastros_sku" class="back-button">Voltar</a>
+    </div>
+</body>
+</html>

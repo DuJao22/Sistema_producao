@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta de Erro</title>
+    <style>
+        /* Estilo da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Estilo do contêiner do alerta */
+        .alert-container {
+            background-color: #fff;
+            border: 1px solid #e74c3c;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+            animation: slideDown 0.5s ease-in-out;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Animação do alerta */
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Título do alerta */
+        .alert-title {
+            font-size: 24px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        /* Texto da mensagem de erro */
+        .alert-message {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Botão para fechar o alerta */
+        .close-btn {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        /* Efeito hover no botão */
+        .close-btn:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contêiner do alerta -->
+    <div class="alert-container">
+        <h2 class="alert-title">Erro de SKU</h2>
+        <p class="alert-message">O SKU digitado não foi encontrado na requisição.<br> Por favor, verifique e execute o fechamento novamente.</p>
+        <a href="/fechamento"><button class="close-btn" onclick="fecharAlerta()">Fechar</button></a>
+    </div>
+
+    <script>
+        // Função para fechar o alerta
+        function fecharAlerta() {
+            const alertContainer = document.querySelector('.alert-container');
+            alertContainer.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

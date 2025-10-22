@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Para esconder a barra de rolagem horizontal */
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #007bff; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        #user-info {
+            text-align: right;
+        }
+
+        #user-info p {
+            margin: 5px 0;
+        }
+
+        #logo {
+            text-align: left;
+        }
+
+        #logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        #content {
+            padding: 10px;
+        }
+
+        /* Estilos para o card de produção */
+        .production-card {
+            background-color: #f2f2f2; /* Cor de fundo cinza claro */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap; /* Permite que os botões do card quebrem para a próxima linha em telas menores */
+            justify-content: space-around; /* Alinhamento horizontal centralizado */
+            align-items: center;
+        }
+
+        .production-card button {
+            margin: 5px; /* Espaçamento entre os botões */
+            padding: 10px 20px;
+            background-color: #007bff; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .production-card button:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 20px; /* Espaçamento superior */
+            margin-bottom: 20px; /* Espaçamento inferior */
+        }
+
+        .logo-container img {
+            max-width: 100%; /* Define a largura máxima da imagem para a largura da tela */
+            height: auto; /* Permite que a altura da imagem seja ajustada automaticamente */
+        }
+
+        .logout-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px; /* Espaçamento superior */
+            color: #007bff; /* Cor do texto azul */
+            text-decoration: none; /* Remove o sublinhado padrão do link */
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 600px) {
+            #header {
+                flex-direction: column; /* Altera a direção da flexbox para empilhar os itens verticalmente */
+            }
+
+            #user-info {
+                text-align: center; /* Centraliza o texto de informações do usuário */
+                margin-top: 10px; /* Adiciona espaço entre o logo e as informações do usuário */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMpbqqC-mLmcPLKoEC6cXd908DuDhWFy_k4LfhtCh-YXXbEoApk_BSEukEbcaVSxPSQcE&usqp=CAU" alt="Ícone do Logo">
+        </div>
+        <div id="user-info">
+            <p>Nome: {{usuario.nome}}</p>
+            
+            <p>Turno de Trabalho: {{usuario.turno}}</p>
+            <p>Data Hoje : {{data}}</p>
+        </div>
+    </div>
+    <div class="logo-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9WPeT_qbTI9MeNL4z3jJggxR-sJQZ-JHCRg&s" alt="Sua Logo">
+    </div>
+    
+
+    <div id="content">
+        <!-- Card de produção -->
+        <div class="production-card">
+
+            <a href="/ver-producao"><button>Ver Produções</button></a>
+            {% if gestor %}
+                <a href="/editar_producao"><button>Editar Produções</button></a>
+                <a href="/requisita-producao"><button>Requisitar Produções</button></a>
+            {% endif %}
+            <a href="/adicionar_observacao"><button>Adiciona Observação</button></a>
+            <a href="/opcoes_cadastros_sku"><button>Cadastar Sku</button></a>
+            
+            <a href="/notificar_operador"><button>Gerar RNC</button></a>
+            <a href="/ADMIM"><button>Adicionar Usuario</button></a>
+            <a href="/editar_usuario"><button>Editar Usuario</button></a>
+            <a href="/editar_requisicao"><button>Editar Requisição</button></a>
+            <a href="/ver_feedbacks"><button>Ver Feedbacks</button></a>
+            
+                
+            
+        </div>
+    </div>
+    <a href="/login" class="logout-button">Logout</a>
+</body>
+</html>

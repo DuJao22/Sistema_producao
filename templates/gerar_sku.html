@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Novos SKUs 3D-Lab</title>
+    <style>
+        body {
+            background-color: #f0f7ff; /* Azul claro */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Para que o rodapé fique no final da página */
+        }
+        header {
+            background-color: #007bff; /* Azul */
+            color: #fff;
+            padding: 5px 0;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1; /* Para que o formulário ocupe o espaço disponível */
+        }
+        .card {
+            background-color: #ffffff; /* Branco */
+            padding: 20px; /* Aumentei o padding para melhor visualização */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Largura do formulário */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff; /* Azul */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+        button:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+        }
+        footer {
+            background-color: #007bff; /* Azul */
+            color: #fff;
+            text-align: center;
+            padding: 3px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cadastro de Novos SKUs 3D-Lab</h1>
+    </header>
+    <div class="container">
+        <div class="card">
+            <form action="/gravar_sku" method="post">
+                <input type="text" id="sku" name="sku" placeholder="SKU" required pattern=".{4}" title="O SKU deve ter exatamente 4 caracteres">
+                <input type="text" id="material" name="material" placeholder="Material" required>
+                <input type="text" id="cor" name="cor" placeholder="Cor" required>
+                <input type="text" id="porcentagem" name="porcentagem" placeholder="Porcentagem" required>
+                <input type="text" id="diametro" name="diametro" placeholder="Diâmetro" required>
+                <input type="text" id="peso" name="peso" placeholder="Peso" required>
+                <input type="text" id="bico" name="bico" placeholder="Bico" required>
+                <input type="text" id="base" name="base" placeholder="Base" required>
+                <hr>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+    <p></p>
+    <hr>
+    <!-- Botão Voltar fixado no rodapé -->
+    <footer>
+        <button onclick="window.history.back()">Voltar</button>
+    </footer>
+</body>
+</html>

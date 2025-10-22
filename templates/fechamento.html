@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Fechamento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Para esconder a barra de rolagem horizontal */
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #007bff; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+        }
+
+        #user-info {
+            text-align: right;
+        }
+
+        #user-info p {
+            margin: 5px 0;
+        }
+
+        #content {
+            padding: 20px;
+        }
+
+        /* Estilos para o botão de adicionar produção */
+        .add-production, .launch-production {
+            width: 80px; /* Aumentado para maior área clicável */
+            height: 80px; /* Aumentado para maior área clicável */
+            border-radius: 50%;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            font-size: 20px; /* Ajustado para melhorar a legibilidade */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 10px; /* Adicionado padding para centralizar o texto */
+            font-weight: bold; /* Texto em negrito */
+        }
+
+        .add-production {
+            position: fixed;
+            bottom: 120px; /* Ajustado para maior visibilidade */
+            right: 20px;
+            background-color: #007bff; /* Cor de fundo azul */
+            z-index: 2000; /* Garante que fique acima dos cards */
+        }
+
+        .launch-production {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745; /* Cor verde */
+            z-index: 2000; /* Garante que fique acima dos cards */
+        }
+
+        /* Estilos para os popups */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%; /* Centraliza verticalmente */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translate(-50%, -50%); /* Ajusta para que o centro do popup esteja no centro da tela */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+            padding: 30px;
+            width: 300px; /* Ajustado para melhor visualização */
+            max-width: 90%; /* Responsividade */
+            color: #fff; /* Cor do texto */
+            z-index: 2000; /* Garante que o popup esteja acima de outros elementos */
+        }
+
+        .popup-blue {
+            background-color: #007bff; /* Cor de fundo azul */
+        }
+
+        .popup-green {
+            background-color: #28a745; /* Cor verde */
+        }
+
+        /* Estilos para o botão de fechar */
+        .close-btn {
+            background-color: #dc3545; /* Cor vermelha */
+            border: none;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Estilos para os inputs */
+        .production-input {
+            margin-bottom: 10px;
+        }
+
+        .production-input label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .production-input input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+ 
+
+        /* Estilos para cores baseadas no SKU */
+        .sku-blue {
+            border: 5px solid #007bff; /* Cor de borda azul */
+            background-color: #c7dbff; /* Cor de fundo azul claro */
+        }
+
+        .sku-green {
+            border: 5px solid #28a745; /* Cor de borda verde */
+            background-color: #9aeea1; /* Cor de fundo verde claro */
+        }
+
+        /* Estilos para o botão de voltar */
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2000; /* Garante que o botão de voltar fique acima dos cartões */
+        }
+
+        .back-btn a {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        #content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .production-card {
+            position: relative;
+            background-color: #ffffff; /* Cor de fundo branca */
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
+            width: 100%; /* Garante que o card ocupe toda a largura possível */
+            max-width: 800px; /* Limita a largura máxima do card */
+        }
+
+        .production-card:hover {
+            background-color: #f0f8ff; /* Cor de fundo azul claro no hover */
+            transform: translateY(-5px); /* Leve elevação no hover */
+        }
+
+        .production-card h3 {
+            margin: 0 0 15px;
+            color: #007bff; /* Cor azul */
+            font-size: 1.5em;
+            border-bottom: 2px solid #007bff; /* Linha azul abaixo do título */
+            padding-bottom: 10px;
+        }
+
+        .card-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Cria três colunas iguais */
+            gap: 20px; /* Espaçamento entre colunas */
+        }
+
+        .card-column {
+            box-sizing: border-box;
+            padding: 8px; /* Adiciona espaço interno */
+        }
+
+        .production-card p {
+            margin: 2px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #333; /* Cor do texto */
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            background-color: #050505; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none; /* Remove o sublinhado */
+            display: inline-block;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #000000; /* Azul mais escuro */
+        }
+
+        /* Estilos para cores baseadas no SKU */
+        .sku-blue {
+            border: 5px solid #007bff; /* Cor de borda azul */
+            background-color: #c7dbff; /* Cor de fundo azul claro */
+        }
+
+        .sku-green {
+            border: 5px solid #28a745; /* Cor de borda verde */
+            background-color: #9aeea1; /* Cor de fundo verde claro */
+        }
+
+        .card-label {
+            position: absolute;
+            top: -10px; /* Ajuste para posicionar o rótulo no topo do card */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #030303; /* Cor de fundo azul */
+            color: #ffffff; /* Cor do texto branco */
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 1; /* Garante que o rótulo fique acima do conteúdo do card */
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div>
+            <h1>Fechamento</h1>
+        </div>
+        <div id="user-info">
+            <p>Nome : {{ info_user.nome }}</p>
+            <p>Turno : {{ info_user.turno }}</p>
+            <p>Maquina : {{ info_user.maquina }}</p>
+        </div>
+    </div>
+
+    <div id="content">
+        <!-- Botão de adicionar produção -->
+        <button class="add-production" id="add-production-btn">3D Lab +</button>
+
+        <!-- Botão de lançar produção -->
+        <button class="launch-production" id="launch-production-btn">Cliever +</button>
+
+        <!-- Botão de voltar -->
+        <div class="back-btn">
+            <a href="/operador">Voltar</a>
+        </div>
+
+        <!-- Balão de adicionar produção -->
+        <div class="popup popup-blue" id="production-popup">
+            <button class="close-btn" id="close-production-popup">&times;</button>
+            <h2>Adicionar Nova Produção 3D Lab</h2>
+            <form action="/registrar-producao" method="POST">
+                <div class="production-input">
+                    <label for="sku-carretel">SKU:</label>
+                    <input type="text" id="sku-carretel" name="sku_carretel" placeholder="SKU" required>
+                </div>
+                <div class="production-input">
+                    <label for="materia_prima">Entrada Materia prima (KG) :</label>
+                    <input type="text" id="materia_prima" name="materia_prima" placeholder="Entrada Materia prima (KG)" required>
+                </div>
+                <div class="production-input">
+                    <label for="quantidade-produzida1kg">Quantidade 1KG Produzida :</label>
+                    <input type="text" id="quantidade-produzida1kg" name="quantidade_produzida1kg" placeholder="Digite a quantidade 1KG produzida" required>
+                </div>
+                <div class="production-input">
+                    <label for="quantidade-produzida500g">Quantidade 500G Produzida :</label>
+                    <input type="text" id="quantidade-produzida500g" name="quantidade_produzida500g" placeholder="Digite a quantidade 500G produzida" required>
+                </div>
+                <div class="production-input">
+                    <label for="quantidade-produzida200g">Quantidade 200G Produzida :</label>
+                    <input type="text" id="quantidade-produzida200g" name="quantidade_produzida200g" placeholder="Digite a quantidade 200G produzida" required>
+                </div>
+                <div class="production-input">
+                    <label for="perda-kg">Perda (kg):</label>
+                    <input type="text" id="perda-kg" name="perda_kg" placeholder="Digite a perda em kg">
+                </div>
+                <div class="production-input">
+                    <label for="low-cort">Low Cost:</label>
+                    <input type="text" id="low-cort" name="low_cort" placeholder="Digite o valor de Low Cort">
+                </div>
+
+                <div class="production-input">
+                    <label for="observacao">observacao :</label>
+                    <input type="text" id="observacao" name="observacao" placeholder="Digite a Observacao">
+                </div>
+                
+                <button onclick="exibirAlerta()" type="submit" class="btn">Registrar Produção</button>
+            </form>
+        </div>
+
+        <!-- Formulário do botão verde -->
+        <div class="popup popup-green" id="launch-popup">
+            <button class="close-btn" id="close-launch-popup">&times;</button>
+            <h2>Adicionar Nova Produção Cliever </h2>
+            <form action="/registrar-producao-cliever" method="POST">
+                <div class="production-input">
+                    <label for="sku-carretel">SKU:</label>
+                    <input type="text" id="sku-carretel" name="sku_carretel" placeholder="SKU">
+                </div>
+                <div class="production-input">
+                    <label for="materia_prima">Entrada Materia prima (KG) :</label>
+                    <input type="text" id="materia_prima" name="materia_prima" placeholder="Entrada Materia prima (KG)" required>
+                </div>
+                <div class="production-input">
+                    <label for="quantidade-produzida1kg">Quantidade 1KG Produzida :</label>
+                    <input type="number" id="quantidade-produzida1kg" name="quantidade_produzida1kg" placeholder="Digite a quantidade 1KG produzida" required>
+                </div>
+                <div class="production-input">
+                    <label for="quantidade-produzida500g">Quantidade 500G Produzida :</label>
+                    <input type="number" id="quantidade-produzida500g" name="quantidade_produzida500g" placeholder="Digite a quantidade 500G produzida" required>
+                </div>
+                <div class="production-input">
+                    <label for="quantidade-produzida200g">Quantidade 200G Produzida :</label>
+                    <input type="number" id="quantidade-produzida200g" name="quantidade_produzida200g" placeholder="Digite a quantidade 200G produzida" required>
+                </div>
+                <div class="production-input">
+                    <label for="perda-kg">Perda (kg):</label>
+                    <input type="text" id="perda-kg" name="perda_kg" placeholder="Digite a perda em kg">
+                </div>
+                <div class="production-input">
+                    <label for="low-cort">Low Cost:</label>
+                    <input type="text" id="low-cort" name="low_cort" placeholder="Digite o valor de Low Cort">
+                </div>
+                <div class="production-input">
+                    <label for="observacao">observacao :</label>
+                    <input type="text" id="observacao" name="observacao" placeholder="Digite a Observacao">
+                </div>
+                <button onclick="exibirAlerta()" type="submit" class="btn">Registrar Produção</button>
+            </form>
+        </div>
+
+        <!-- Cards de produção -->
+        <div id="content">
+            {% for date, productions_list in productions.items() %}
+                {% for production in productions_list %}
+                    {% if production.ID == infid %}
+                    <div class="production-card {{ 'sku-blue' if production.sku|length == 4 else 'sku-green' }}" data-sku="{{ production.sku }}">
+                        <div class="card-label">
+                            {{ '3D Lab' if production.sku|length == 4 else 'Cliever' }}
+                        </div>
+                        <h3> {{ production.material }} {{ production.cor }} - {{ production.diametro }} MM</h3>
+                        
+                        <div class="card-content">
+                            <div class="card-column">
+                                
+                                <p><strong>Operador:</strong> {{ nome }}</p>
+                                <p><strong>ID:</strong> {{ production.ID }}</p>
+                                <p><strong>Sku:</strong> {{ production.sku }}</p>
+                                <p><strong>Materia Prima:</strong> {{ production.materia_prima }} KG</p>
+                                <p><strong>Data: </strong> {{ date }} </p>
+
+                            </div>
+                            <div class="card-column">
+                                <p><strong>Quantidade Carretel 1KG Produzida:</strong> {{ production.produzida }} UN</p>
+                                <p><strong>Quantidade Carretel 500G Produzida:</strong> {{ production.produzida500g }} UN</p>
+                                <p><strong>Quantidade Carretel 200G Produzida:</strong> {{ production.produzida200g }} UN</p>
+                            </div>
+                            <div class="card-column">
+                                <p><strong>Perda (kg):</strong> {{ production.perda }}</p>
+                                <p><strong>Low Cost:</strong> {{ production.low }}</p>
+                                <p><strong>Lote:</strong> {{ production.lote }}</p>
+                                <p><strong>Observacao:</strong> {{ production.observacao }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        // Função para verificar se o valor contém uma vírgula e notificar o usuário
+        function verificarVirgula(event) {
+            const valor = event.target.value;
+
+            if (valor.includes(',')) {
+                alert("Por favor, use '.' ao invés de ',' para separar decimais.");
+            }
+        }
+
+        // Adiciona o evento de 'input' aos campos de Perda e Low Cost para monitorar a entrada do usuário
+        document.getElementById('perda-kg').addEventListener('input', verificarVirgula);
+        document.getElementById('low-cort').addEventListener('input', verificarVirgula);
+
+        function exibirAlerta() {
+            alert("✅ Sua Produção foi registrada com sucesso !!! ✅");
+        }
+        // Elementos DOM
+        const addProductionBtn = document.getElementById('add-production-btn');
+        const launchProductionBtn = document.getElementById('launch-production-btn');
+        const productionPopup = document.getElementById('production-popup');
+        const launchPopup = document.getElementById('launch-popup');
+        const closeProductionPopup = document.getElementById('close-production-popup');
+        const closeLaunchPopup = document.getElementById('close-launch-popup');
+
+        // Função para esconder todos os popups
+        function hideAllPopups() {
+            productionPopup.style.display = 'none';
+            launchPopup.style.display = 'none';
+        }
+
+        // Evento de clique no botão de adicionar produção
+        addProductionBtn.addEventListener('click', () => {
+            hideAllPopups();
+            productionPopup.style.display = 'block';
+        });
+
+        // Evento de clique no botão de lançar produção
+        launchProductionBtn.addEventListener('click', () => {
+            hideAllPopups();
+            launchPopup.style.display = 'block';
+        });
+
+        // Fechar o formulário de adicionar produção
+        closeProductionPopup.addEventListener('click', () => {
+            productionPopup.style.display = 'none';
+        });
+
+        // Fechar o formulário de lançar produção
+        closeLaunchPopup.addEventListener('click', () => {
+            launchPopup.style.display = 'none';
+        });
+
+        // Função para aplicar cor com base no comprimento do SKU
+        function applySkuColor() {
+            const productionCards = document.querySelectorAll('.production-card');
+
+            productionCards.forEach(card => {
+                const sku = card.dataset.sku;
+
+                if (sku.length === 4) {
+                    card.classList.add('sku-blue');
+                } else if (sku.length === 6) {
+                    card.classList.add('sku-green');
+                }
+            });
+        }
+
+        // Aplica a cor aos cartões ao carregar a página
+        document.addEventListener('DOMContentLoaded', applySkuColor);
+
+        
+        const skusDict = { skus_dict };
+        
+        // Função para verificar se o SKU existe no dicionário
+        function verificarSkuExistente3d(event) {
+            const sku = document.getElementById('sku-carretel').value;
+
+            if (!skusDict[sku]) {
+                alert("⚠️ O SKU digitado não foi encontrado. Verifique e tente novamente.");
+                event.preventDefault();  // Impede o envio do formulário
+            } else {
+                alert("✅ SKU encontrado! Registrando produção...");
+            }
+        }
+
+        const skusDict_cliever = { skus_dict_cliever };
+        
+        // Função para verificar se o SKU existe no dicionário
+        function verificarSkuExistente3d(event) {
+            const sku = document.getElementById('sku-carretel').value;
+
+            if (!skusDict_cliever[sku]) {
+                alert("⚠️ O SKU digitado não foi encontrado. Verifique e tente novamente.");
+                event.preventDefault();  // Impede o envio do formulário
+            } else {
+                alert("✅ SKU encontrado! Registrando produção...");
+            }
+        }
+
+        // Adicionando evento ao botão de registrar produção
+        document.querySelector('form[action="/registrar-producao"]').addEventListener('submit', verificarSkuExistente3d);
+        document.querySelector('form[action="/registrar-producao-cliever"]').addEventListener('submit', verificarSkuExistentecliever);
+    
+
+    </script>
+</body>
+</html>

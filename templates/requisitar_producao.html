@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pedir para Produzir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            margin: 0;
+        }
+
+        .card {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #007bff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .production-card {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-production {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .production-form {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            max-width: 90%;
+            width: 300px;
+            margin: auto;
+            max-height: 70%;
+            overflow-y: auto;
+        }
+
+        .production-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .production-form input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        
+        .production-form button {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .column {
+            width: 30%;
+            float: left;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Pedir para Produzir - Maquina {{maquina}}</h1>
+
+    <div class="card">
+        <h2>PRODUÇÃO PENDENTE</h2>
+        {% if Requisicao %}
+            {% for maquina, datas in Requisicao.items() %}
+                {% if maquina == ref_maquina %}
+                    {% for sku, info in datas.items() %}
+                        <div class="production-card">
+                            <div class="row">
+                                <div class="column">
+                                    <h3>SKU : {{ sku }}</h3>
+                                    <p>Data: {{ info.data }}</p>
+                                    <p>Material: {{ info.tipo_material }}</p>
+                                </div>
+                                <div class="column">
+                                    <p>Cor: {{ info.cor }}</p>
+                                    <p>Porcentagem: {{ info.porcentagem }}</p>
+                                    <p>Carretel: {{ info.carretel }}</p>
+                                </div>
+                                <div class="column">
+                                    <p>Quantidade: {{ info.quantidade }} UN</p>
+                                    <p>Velocidade: {{ info.velocidade }}</p>
+                                    <p>Diâmetro: {{ info.diametro }} MM</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    
+    <button class="add-production" id="add-production-btn">+</button>
+
+    <div class="production-form" id="production-form">
+        <h2>Adicionar Nova Requisição de Produção</h2>
+        <form action="/registrar-requisicao" method="POST">
+            <label for="data">Data:</label>
+            <input type="date" id="data" name="data" placeholder="Data"><br>
+            
+            <label for="sku">SKU:</label>
+            <input type="text" id="sku" name="sku" placeholder="SKU"><br>
+                
+            <label for="quantidade">Quantidade:</label>
+            <input type="text" id="quantidade" name="quantidade" placeholder="Quantidade"><br>
+            
+            <label for="velocidade">Velocidade:</label>
+            <input type="text" id="velocidade" name="velocidade" placeholder="Velocidade"><br>
+            
+            
+             
+            <button type="submit">Requisitar Produção</button>
+
+        </form>
+    </div>
+
+    <a href="/requisita-producao" class="back-btn">Voltar</a>
+
+    <script>
+        const addProductionBtn = document.getElementById('add-production-btn');
+        const productionForm = document.getElementById('production-form');
+
+        addProductionBtn.addEventListener('click', () => {
+            productionForm.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
