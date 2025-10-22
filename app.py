@@ -21,7 +21,7 @@ from feedback import Feedback
 
 ref_maquina = ''
 app = Flask(__name__)
-app.secret_key = 'D220101'
+app.secret_key = os.environ.get('SECRET_KEY', 'D220101')
 unidade = 0
 data = datetime.now().strftime('%d-%m-%Y')
 data2 = datetime.now().strftime('%d-%m-%Y')
@@ -1596,7 +1596,11 @@ def tela4():
 
 
 if __name__ == "__main__":
+    import os
     print("Servidor Online ")
     
-    app.run(debug = True , host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("DEBUG", "False").lower() == "true"
+    
+    app.run(debug=debug, host="0.0.0.0", port=port)
     
