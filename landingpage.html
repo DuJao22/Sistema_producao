@@ -1,0 +1,284 @@
+<!--
+  templates/landing.html
+  CiviPro Ultimate - Landing Page
+  Sistema desenvolvido por João Layon - Desenvolvedor Full Stack
+-->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CiviPro Ultimate — Gestão Completa de Projetos de Engenharia Civil</title>
+  <meta name="description" content="CiviPro Ultimate — plataforma SaaS para gestão completa de obras, orçamentos, materiais, mão de obra e equipamentos. Teste grátis 7 dias." />
+  <meta name="author" content="João Layon - Desenvolvedor Full Stack" />
+  <meta name="theme-color" content="#0ea5e9">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .hero-gradient {
+      background: linear-gradient(90deg, rgba(14,165,233,0.06), rgba(16,185,129,0.05));
+    }
+    .glass {
+      backdrop-filter: blur(6px);
+      background-color: rgba(255,255,255,0.6);
+    }
+  </style>
+</head>
+<body class="antialiased text-gray-800 bg-white dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur border-b border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-cyan-600 text-white font-bold">CP</div>
+          <div>
+            <div class="text-lg font-semibold">CiviPro Ultimate</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">Gestão completa de obras</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex gap-4 text-sm">
+          <a href="#benefits" class="hover:underline">Benefícios</a>
+          <a href="#pricing" class="hover:underline">Planos</a>
+          <a href="#testimonials" class="hover:underline">Depoimentos</a>
+          <a href="#faq" class="hover:underline">FAQ</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="/register" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md text-sm shadow">Teste grátis 7 dias</a>
+          <button id="themeBtn" class="hidden md:inline p-2 rounded text-sm bg-gray-100 dark:bg-gray-800">☀️/🌙</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="hero-gradient">
+    <section class="max-w-7xl mx-auto px-4 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold leading-tight">
+            Gerencie seus projetos de engenharia com eficiência.
+            <span class="text-cyan-600">Orçamentos, clientes, materiais e equipe em uma só plataforma.</span>
+          </h1>
+          <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-xl">
+            O CiviPro Ultimate é a solução completa para engenheiros civis e construtoras: controle de obras, biblioteca de materiais, cálculo automático de orçamentos e exportação de PDF profissional.
+          </p>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="/register" class="inline-flex items-center justify-center px-5 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md shadow">
+              Teste grátis 7 dias — Comece agora
+            </a>
+            <a href="#benefits" class="inline-flex items-center justify-center px-5 py-3 border border-gray-200 dark:border-gray-700 rounded-md text-sm">
+              Ver benefícios
+            </a>
+          </div>
+
+          <ul class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600 dark:text-gray-300">
+            <li>✅ Gestão completa de projetos</li>
+            <li>✅ Biblioteca de materiais e equipamentos</li>
+            <li>✅ Orçamentos automáticos detalhados</li>
+            <li>✅ Exportação profissional de PDFs</li>
+          </ul>
+
+          <div class="mt-6 text-xs text-gray-500 dark:text-gray-400">
+            <strong>Lançamento:</strong> Teste gratuito por 7 dias para novos usuários.
+          </div>
+        </div>
+
+        <div>
+          <div class="rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 p-5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">Demonstração</div>
+                  <div class="mt-1 font-semibold">Projeto: Reforma Residencial</div>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Status: <strong>Em andamento</strong></div>
+              </div>
+
+              <div class="mt-4 bg-gray-50 dark:bg-gray-900 p-4 rounded">
+                <div class="text-sm">
+                  <p><strong>Cliente:</strong> João Silva</p>
+                  <p><strong>Custo estimado:</strong> R$ 15.000</p>
+                  <p><strong>Prazo:</strong> 30 dias</p>
+                </div>
+                <div class="mt-4 text-right font-semibold text-green-600">Projeto ativo ✔️</div>
+              </div>
+
+              <div class="mt-4 flex gap-2">
+                <a href="/register" class="flex-1 text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">Testar demo</a>
+                <a href="#pricing" class="flex-1 text-center px-4 py-2 border rounded">Ver planos</a>
+              </div>
+            </div>
+            <div class="p-3 bg-gray-50 dark:bg-gray-900 text-xs text-gray-500 dark:text-gray-400">
+              Orçamentos automáticos • Controle de materiais • Gestão de equipe
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- BENEFÍCIOS -->
+  <section id="benefits" class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center max-w-3xl mx-auto">
+      <h3 class="text-xl font-bold">Por que escolher o CiviPro Ultimate</h3>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Otimize tempo, reduza erros e tenha controle total sobre seus projetos de engenharia.</p>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="text-2xl">📊</div>
+        <h4 class="mt-3 font-semibold">Dashboard completo</h4>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Visualize métricas de projetos, custos e progresso em tempo real.</p>
+      </div>
+
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="text-2xl">🛠️</div>
+        <h4 class="mt-3 font-semibold">Controle de materiais e mão de obra</h4>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Gerencie fornecedores, equipamentos e equipes com precisão.</p>
+      </div>
+
+      <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div class="text-2xl">💰</div>
+        <h4 class="mt-3 font-semibold">Orçamentos automáticos</h4>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Cálculo detalhado de custos por categoria com exportação em PDF profissional.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section id="pricing" class="max-w-7xl mx-auto px-4 py-12 bg-gray-50 dark:bg-gray-800 rounded-t-lg">
+    <div class="text-center">
+      <h3 class="text-2xl font-bold">Planos</h3>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Escolha o plano ideal para sua empresa ou consultor independente.</p>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+        <h4 class="font-semibold">Básico</h4>
+        <div class="mt-4 text-3xl font-extrabold">R$ 97 <span class="text-sm font-medium">/mês</span></div>
+        <ul class="mt-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
+          <li>• Até 5 projetos simultâneos</li>
+          <li>• Biblioteca básica de materiais</li>
+          <li>• Orçamentos simples</li>
+        </ul>
+        <a href="/register" class="mt-6 inline-block w-full text-center px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded">Assinar Básico</a>
+      </div>
+
+      <div class="p-6 bg-gradient-to-br from-white to-cyan-50 dark:from-gray-900 dark:to-gray-800 rounded-lg shadow-lg border border-cyan-200 dark:border-cyan-800">
+        <div class="flex items-center justify-between">
+          <h4 class="font-semibold">Profissional</h4>
+          <div class="text-sm px-2 py-1 bg-cyan-100 text-cyan-800 rounded">Mais usado</div>
+        </div>
+        <div class="mt-4 text-3xl font-extrabold">R$ 197 <span class="text-sm font-medium">/mês</span></div>
+        <ul class="mt-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
+          <li>• Projetos ilimitados</li>
+          <li>• Controle completo de materiais e equipe</li>
+          <li>• Exportação de PDFs detalhados</li>
+        </ul>
+        <a href="/register" class="mt-6 inline-block w-full text-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">Assinar Profissional</a>
+      </div>
+
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+        <h4 class="font-semibold">Enterprise</h4>
+        <div class="mt-4 text-3xl font-extrabold">R$ 397 <span class="text-sm font-medium">/mês</span></div>
+        <ul class="mt-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
+          <li>• Suporte prioritário</li>
+          <li>• Personalização da plataforma</li>
+          <li>• Relatórios avançados e dashboards</li>
+        </ul>
+        <a href="/register" class="mt-6 inline-block w-full text-center px-4 py-2 border border-gray-300 rounded">Assinar Enterprise</a>
+      </div>
+    </div>
+
+    <div class="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+      Teste grátis disponível por 7 dias para todos os planos.
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section id="testimonials" class="max-w-7xl mx-auto px-4 py-12">
+    <div class="text-center">
+      <h3 class="text-xl font-bold">O que os profissionais dizem</h3>
+    </div>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+        <div class="text-sm font-semibold">Eng. Paulo — SP</div>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">"O CiviPro me ajuda a controlar todos os custos e cronogramas de forma simples e eficiente."</p>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+        <div class="text-sm font-semibold">Construtora Vida — MG</div>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">"Centralizamos materiais, equipe e fornecedores em um único sistema. Redução de erros garantida."</p>
+      </div>
+      <div class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow">
+        <div class="text-sm font-semibold">Eng. Ana — RJ</div>
+        <p class="mt-3 text-sm text-gray-600 dark:text-gray-300">"Sistema completo e intuitivo. Facilita nosso dia a dia em todos os projetos."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-7xl mx-auto px-4 py-12 bg-gray-50 dark:bg-gray-800 rounded-b-lg">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-lg font-bold">Perguntas frequentes</h3>
+
+      <div class="mt-6 space-y-4">
+        <details class="p-4 bg-white dark:bg-gray-900 rounded shadow">
+          <summary class="font-medium">O teste grátis exige cartão?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Não — o teste é 100% gratuito por 7 dias, sem precisar inserir cartão.</p>
+        </details>
+
+        <details class="p-4 bg-white dark:bg-gray-900 rounded shadow">
+          <summary class="font-medium">Posso gerar orçamentos detalhados?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Sim — cálculos automáticos separados por materiais, mão de obra e equipamentos.</p>
+        </details>
+
+        <details class="p-4 bg-white dark:bg-gray-900 rounded shadow">
+          <summary class="font-medium">O sistema é seguro?</summary>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Sim — todos os dados são armazenados localmente com isolamento por usuário e criptografia de senhas.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <div class="rounded-lg bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-8 text-center">
+      <h3 class="text-2xl font-bold">Leve sua engenharia para o digital</h3>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Teste o CiviPro Ultimate grátis por 7 dias e veja como otimizar seus projetos.</p>
+      <div class="mt-6">
+        <a href="/register" class="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-md">Iniciar teste grátis</a>
+      </div>
+      <div class="mt-4 text-xs text-gray-500 dark:text-gray-400">Cancele a qualquer momento durante o teste.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-sm">© <span id="year"></span> CiviPro Ultimate — Todos os direitos reservados.</div>
+      <div class="text-sm text-gray-500 dark:text-gray-400">Sistema desenvolvido por <strong>João Layon</strong> — Desenvolvedor Full Stack</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      const btn = document.getElementById('themeBtn');
+      if(!btn) return;
+      const root = document.documentElement;
+      const stored = localStorage.getItem('civipro_theme');
+      if (stored === 'dark') root.classList.add('dark');
+      btn.addEventListener('click', () => {
+        root.classList.toggle('dark');
+        localStorage.setItem('civipro_theme', root.classList.contains('dark') ? 'dark' : 'light');
+      });
+    })();
+  </script>
+</body>
+</html>
