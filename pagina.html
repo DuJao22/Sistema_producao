@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Production Management System - Gestão de Produção Inteligente e Integrada para controle total do seu chão de fábrica." />
+  <title>Production Management System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    }
+    .shadow-card {
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-700">Production<span class="text-gray-900">System</span></h1>
+      <nav class="hidden md:flex space-x-8 font-medium">
+        <a href="#benefits" class="hover:text-blue-600">Recursos</a>
+        <a href="#demo" class="hover:text-blue-600">Demonstração</a>
+        <a href="#feedback" class="hover:text-blue-600">Depoimentos</a>
+        <a href="#contact" class="hover:text-blue-600">Contato</a>
+      </nav>
+      <a href="#cta" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition-all">Solicitar Demonstração</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="gradient-bg text-white min-h-screen flex items-center justify-center text-center px-6 pt-24">
+    <div class="max-w-3xl">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Gestão de Produção Inteligente e Integrada</h2>
+      <p class="text-lg md:text-xl mb-8 opacity-90">Controle total do seu chão de fábrica, em tempo real. Reduza erros, aumente a eficiência e tenha relatórios automáticos com o <strong>Production Management System</strong>.</p>
+      <a href="#cta" class="bg-white text-blue-700 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all">Solicitar Demonstração Gratuita</a>
+    </div>
+  </section>
+
+  <!-- Benefícios -->
+  <section id="benefits" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-gray-900 mb-10">Por que escolher o Production Management System?</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <h4 class="text-xl font-semibold text-blue-700 mb-3">👤 Gestão de Usuários</h4>
+          <p>Controle funções e permissões de operadores, gestores e analistas de qualidade de forma simples e segura.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <h4 class="text-xl font-semibold text-blue-700 mb-3">⚙️ Rastreamento em Tempo Real</h4>
+          <p>Acompanhe a produção em até 4 máquinas simultaneamente, com dados precisos e dashboards claros.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <h4 class="text-xl font-semibold text-blue-700 mb-3">📊 Relatórios Inteligentes</h4>
+          <p>Gere relatórios automáticos em Excel com apenas um clique, usando Pandas e OpenPyXL.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <h4 class="text-xl font-semibold text-blue-700 mb-3">🧠 Controle de Qualidade</h4>
+          <p>Gerencie inspeções e não conformidades integradas ao processo de produção.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <h4 class="text-xl font-semibold text-blue-700 mb-3">🔔 Notificações e Feedback</h4>
+          <p>Alertas automáticos e canal de feedback interno para comunicação eficiente entre equipes.</p>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <h4 class="text-xl font-semibold text-blue-700 mb-3">💾 Tecnologia Confiável</h4>
+          <p>Desenvolvido com Flask 3.0, Python 3.11 e Pandas, garantindo performance e estabilidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demonstração -->
+  <section id="demo" class="py-20 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-gray-900 mb-6">Visual simples. Dados poderosos.</h3>
+      <p class="text-lg text-gray-600 mb-10">O Production Management System oferece uma interface leve e eficiente para controlar SKUs, máquinas e qualidade, tudo em um só lugar.</p>
+      <img src="https://dummyimage.com/1000x500/cccccc/000000&text=Dashboard+Preview" alt="Demonstração do Sistema" class="mx-auto rounded-xl shadow-card">
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="feedback" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-3xl font-bold text-gray-900 mb-10">O que nossos clientes dizem</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <p class="italic mb-4">“Nosso tempo de resposta no controle de produção caiu pela metade desde que implementamos o sistema.”</p>
+          <h4 class="font-semibold text-blue-700">Eng. de Produção, Grupo Industrial XYZ</h4>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <p class="italic mb-4">“A automação de relatórios em Excel economiza horas do meu time toda semana.”</p>
+          <h4 class="font-semibold text-blue-700">Gerente de Operações, Fábrica Delta</h4>
+        </div>
+        <div class="p-6 bg-gray-50 rounded-2xl shadow-card">
+          <p class="italic mb-4">“Simplicidade e robustez — exatamente o que precisávamos para modernizar nosso processo produtivo.”</p>
+          <h4 class="font-semibold text-blue-700">Supervisor de Produção, Indústria Alfa</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section id="cta" class="gradient-bg text-white py-20 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h3 class="text-3xl md:text-4xl font-bold mb-6">Transforme a gestão da sua fábrica hoje mesmo</h3>
+      <p class="text-lg mb-8 opacity-90">Automatize processos, elimine retrabalhos e tome decisões com base em dados reais.</p>
+      <a href="#contact" class="bg-white text-blue-700 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all">Agendar Demonstração</a>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contact" class="py-20 bg-white text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <h3 class="text-3xl font-bold text-gray-900 mb-6">Entre em Contato</h3>
+      <p class="text-gray-600 mb-8">Quer conhecer melhor o sistema? Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
+      <form class="grid md:grid-cols-2 gap-6 text-left">
+        <input type="text" placeholder="Nome completo" class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <input type="email" placeholder="E-mail corporativo" class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <input type="text" placeholder="Empresa" class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 md:col-span-2">
+        <textarea placeholder="Mensagem" rows="4" class="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 md:col-span-2"></textarea>
+        <button type="submit" class="bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-all md:col-span-2">Enviar Mensagem</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-6 text-center">
+    <p>&copy; 2025 Production Management System. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
