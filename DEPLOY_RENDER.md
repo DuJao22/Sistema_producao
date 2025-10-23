@@ -36,7 +36,7 @@ git push origin main
    
    **Build & Deploy:**
    - Runtime: `Python 3`
-   - Build Command: `pip install -r requirements.txt`
+   - Build Command: `pip install --upgrade pip && pip install -r requirements.txt`
    - Start Command: (o Render lerá automaticamente do Procfile)
    
    **⚠️ IMPORTANTE - Versão do Python:**
@@ -117,8 +117,26 @@ No Render, os dados serão persistidos apenas enquanto o serviço não for reini
 
 ## Troubleshooting
 
+### ❌ Erro: "Failed building wheel for pandas" ou "gcc failed with exit code 1"
+**Problema:** Render está tentando compilar pandas do código fonte ao invés de usar pacotes pré-compilados
+
+**Solução:**
+1. **Atualize o Build Command** (MAIS IMPORTANTE):
+   - No painel do Render, vá em **Settings → Build & Deploy**
+   - Mude o **Build Command** para: `pip install --upgrade pip && pip install -r requirements.txt`
+   - Salve as mudanças
+   - Clique em **Manual Deploy → Deploy latest commit**
+
+2. **Verifique a versão do Python**:
+   - Certifique-se de que `runtime.txt` contém `python-3.10.15`
+   - Python 3.10 tem pacotes pré-compilados para pandas 2.0.3
+
+**Por que isso funciona?**
+- Versões antigas do pip não conseguem encontrar os pacotes pré-compilados (wheels)
+- Atualizar o pip primeiro garante que ele use os binários do pandas ao invés de tentar compilar
+
 ### ❌ Erro: "pandas compilation failed" ou "cpython-313"
-**Problema:** Render está tentando usar Python 3.13 que não é compatível com pandas
+**Problema:** Render está tentando usar Python 3.13 que não é compatível com pandas 2.0.3
 
 **Solução:**
 1. Verifique se `runtime.txt` contém `python-3.10.15`
