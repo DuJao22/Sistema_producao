@@ -19,9 +19,9 @@ Production management system built with Flask for tracking manufacturing operati
 - Feedback system
 
 ## Technical Details
-- **Framework**: Flask 3.0.0
-- **Language**: Python 3.11
-- **Dependencies**: pandas, openpyxl, gunicorn
+- **Framework**: Flask 3.0.3
+- **Language**: Python 3.10.15 (production) / 3.11 (development)
+- **Dependencies**: pandas 2.0.3, openpyxl 3.1.2, gunicorn 22.0.0
 - **Production Server**: Gunicorn with 4 workers
 - **Data Storage**: Python files with dictionary structures (file-based persistence)
 
@@ -34,6 +34,7 @@ Production management system built with Flask for tracking manufacturing operati
 - 2025-10-22: Removed pyautogui dependency (no longer needed)
 - 2025-10-22: Added gunicorn for production deployment
 - 2025-10-22: Fixed Windows line endings (CRLF to LF)
+- 2025-10-23: Updated to Python 3.10.15 and pandas 2.0.3 for Render compatibility
 
 ## Configuration
 - **Development**: Runs on 0.0.0.0:5000 with debug mode configurable via DEBUG env var

@@ -38,6 +38,13 @@ git push origin main
    - Runtime: `Python 3`
    - Build Command: `pip install -r requirements.txt`
    - Start Command: (o Render lerá automaticamente do Procfile)
+   
+   **⚠️ IMPORTANTE - Versão do Python:**
+   - Verifique se está usando **Python 3.10.x** (não 3.13!)
+   - O arquivo `runtime.txt` especifica `python-3.10.15`
+   - Se aparecer erro no build, clique em "Environment" e adicione:
+     - Variável: `PYTHON_VERSION`
+     - Valor: `3.10.15`
 
 ### 3. Variáveis de Ambiente
 
@@ -110,14 +117,32 @@ No Render, os dados serão persistidos apenas enquanto o serviço não for reini
 
 ## Troubleshooting
 
-### Erro de Build
+### ❌ Erro: "pandas compilation failed" ou "cpython-313"
+**Problema:** Render está tentando usar Python 3.13 que não é compatível com pandas
+
+**Solução:**
+1. Verifique se `runtime.txt` contém `python-3.10.15`
+2. No painel do Render, vá em **Settings → General → Runtime**
+3. Se aparecer "Python 3.13", força a versão manualmente:
+   - Vá em **Environment**
+   - Adicione: `PYTHON_VERSION=3.10.15`
+4. Faça um novo deploy manual
+5. Aguarde o build (pode levar 5-10 minutos)
+
+**Alternativa:**
+- Delete e recrie o Web Service do zero
+- Certifique-se de selecionar Python 3 durante a criação
+
+### Erro de Build Geral
 - Verifique se `requirements.txt` está correto
 - Certifique-se de que `runtime.txt` tem a versão correta do Python
+- Verifique os logs completos para identificar qual pacote falhou
 
 ### Erro de Start
 - Verifique os logs no painel do Render
 - Confirme que o Procfile está no diretório raiz
 - Verifique se a porta está sendo lida da variável `PORT`
+- Certifique-se de que configurou a SECRET_KEY
 
 ### Performance Lenta
 - Aumente o número de workers no Procfile
